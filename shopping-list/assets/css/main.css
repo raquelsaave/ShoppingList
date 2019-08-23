@@ -1,0 +1,53 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.new #save {
+    display: none;
+}
+
+.edit #add {
+    display: none;
+}
+
+ul {
+    list-style: none;
+    margin: 10px 0;
+    padding: 0;
+}
+
+#list li {
+    display: flex;
+    align-items: baseline;
+    padding: 10px 0 0 0;
+}
+
+
+li::before { /* add the new bullet point */
+    display: inline-block;
+    content: '\2713';
+    margin-right: 5px;
+    color: #66c;
+}
+
+.content {
+    min-width: 80px;
+}
+
+#form {
+    padding-top: 10px;
+}
+
+.btn {
+    margin-left: 5px;
+    padding: 5px 10px;
+    border: 1px solid #4caf50;
+    border-radius: 2px;
+}
+
+.btn.btn-delete {
+    border: 1px solid #e91e63;
+}
