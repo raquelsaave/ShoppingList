@@ -110,5 +110,8 @@ function createElement(tag, text, className, events) {
     return element;
 }
 
-var list1 = new ShoppingList(document.querySelector('.shopping-list'));
-var list2 = new ShoppingList(document.querySelector('.shopping-list1'));
+let allLists= document.querySelectorAll('.shopping-list')
+
+for (let i=0; i<allLists.length; i++) {
+    new ShoppingList(allLists[i])
+}
