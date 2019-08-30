@@ -1,9 +1,14 @@
 body {
-    display: flex;
+    display:flex;
     justify-content: center;
     align-items: center;
 }
-
+/* 
+.lists {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+} */
 
 .new #save {
     display: none;

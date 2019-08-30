@@ -1,3 +1,5 @@
+
+
 function ShoppingList(root) {
     this.root = root,
     this.id = 1,
@@ -13,12 +15,26 @@ function ShoppingList(root) {
     this.saveButton.onclick = this.save.bind(this)
 }
 
+var request = new XMLHttpRequest();
+request.open('GET', './assets/template.html', true); 
+//   request.onload = onSuccess;
+//   request.onerror = onError;
 
+request.onload = function () {
+    console.log(this.response)
+  }
+
+request.send(null)
+
+
+function reqListener(event) {
+ console.log(event)
+}
 
 ShoppingList.prototype.add = function () {
-
+ 
     // Interpolar vista y modelo
-    let itemTemplate = '<li> <span id="{{id}}"> {{text}} </span> <a class="btn btn-edit">Edit</a> <a class="btn btn-delete">Delete</a></li>';
+    let itemTemplate = '<li id="li-{{id}}"> <span id="{{id}}"> {{text}} </span> <a class="btn btn-edit">Edit</a> <a class="btn btn-delete">Delete</a></li>';
     let listItem = Mustache.render(itemTemplate, { id: this.id, text: this.textInput.value })
    
     // Crear nodo
@@ -68,9 +84,25 @@ ShoppingList.prototype.onDelete = function () {
 // }
 
 let allLists = document.querySelectorAll('.shopping-list')
-console.log(allLists)
+// console.log(allLists)
 for (let i = 0; i < allLists.length; i++) {
     new ShoppingList(allLists[i])   
 }
 
+// let listStructure = '<div class="container shopping-list"><span id="listTitle">{{title}}</span><ul id="list"> </ul> <hr /> <div id="form" class="new"> <input id="text" type="text" /> <a id="add" class="btn">Add</a> <a id="save" class="btn">Save</a> </div> </div>'
+// let inputGeneral = document.getElementById("name");
+// let listsContainer = document.getElementById("lists")
 
+// let btnAdd = document.querySelector('.btn-newlist');
+// btnAdd.onclick = function () {
+//     let listsName = Mustache.render(listStructure, { title: inputGeneral.value })
+
+//     // Crear nodo
+//     let template = document.createElement('template');
+//     template.innerHTML = listsName;
+
+//     // Insertar
+//     listsContainer.appendChild(template.content);
+//     console.log(this);
+    
+// }
