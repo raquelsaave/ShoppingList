@@ -1,14 +1,15 @@
 body {
     display:flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
+    flex-direction: column;
 }
-/* 
-.lists {
+
+.allLists {
     display:flex;
     justify-content: center;
     align-items: center;
-} */
+}
 
 .new #save {
     display: none;
@@ -56,3 +57,12 @@ li::before { /* add the new bullet point */
 .btn.btn-delete {
     border: 1px solid #e91e63;
 }
+.container {
+    display:flex;
+    flex-direction: column;
+}
+
+#list-done li{
+    text-decoration:line-through
+}
+

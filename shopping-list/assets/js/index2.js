@@ -1,54 +1,49 @@
 
+var request = new XMLHttpRequest();
 
-function ShoppingList(root) {
+function ShoppingList(root, name) {
     this.root = root,
+    this.name = name,
     this.id = 1,
     this.textInput = root.querySelector('#text'),
     this.addButton = root.querySelector('#add'),
     this.list = root.querySelector('#list'),
+    this.listDone = root.querySelector('#list-done');
     this.saveButton = root.querySelector('#save'),
     this.attributeNumber = 0,
-    this.form = root.querySelector('#form')
-    this.addButton.onclick = this.add.bind(this)
-    this.onEditItem = this.onEdit.bind(this)
-    this.onDeleteItem = this.onDelete.bind(this)
-    this.saveButton.onclick = this.save.bind(this)
+    this.form = root.querySelector('#form'),
+    this.addButton.onclick = this.add.bind(this),
+    this.onEdit = this.onEdit.bind(this),
+    this.onDelete = this.onDelete.bind(this),
+    this.saveButton.onclick = this.save.bind(this),
+    this.span = this.done.bind(this)
 }
 
-var request = new XMLHttpRequest();
-request.open('GET', './assets/template.html', true); 
-//   request.onload = onSuccess;
-//   request.onerror = onError;
+ShoppingList.prototype.add = function (event) {
+    let thislist = this
+    // console.log(event.currentTarget.response)
+    request.open('GET', './assets/template.html', true);
+    request.onload = function () {
+        console.log(this.response)
 
-request.onload = function () {
-    console.log(this.response)
-  }
+        // Interpolar vista y modelo
+        let listItem = Mustache.render(this.response, { id: thislist.id, text: thislist.textInput.value })
 
-request.send(null)
+        // Crear nodo
+        let template = document.createElement('template');
+        template.innerHTML = listItem;
 
+        // Insertar
+        thislist.list.appendChild(template.content);
 
-function reqListener(event) {
- console.log(event)
-}
-
-ShoppingList.prototype.add = function () {
- 
-    // Interpolar vista y modelo
-    let itemTemplate = '<li id="li-{{id}}"> <span id="{{id}}"> {{text}} </span> <a class="btn btn-edit">Edit</a> <a class="btn btn-delete">Delete</a></li>';
-    let listItem = Mustache.render(itemTemplate, { id: this.id, text: this.textInput.value })
-   
-    // Crear nodo
-    let template = document.createElement('template');
-    template.innerHTML = listItem;
-
-    // Insertar
-    this.list.appendChild(template.content);
-
-    // Binding de botones 
-    this.list.querySelector('.btn-edit').onclick = this.onEdit.bind(this)
-    this.list.querySelector('.btn-delete').onclick = this.onDelete.bind(this)
-    this.textInput.value = '';
-    this.id = this.id + 1;
+        // Binding de botones 
+        thislist.list.querySelector('.btn-edit').onclick = thislist.onEdit.bind(thislist)
+        thislist.list.querySelector('.btn-delete').onclick = thislist.onDelete.bind(thislist)
+        thislist.list.querySelector('.spanLi').onclick = thislist.span.bind(thislist)
+        thislist.textInput.value = '';
+        thislist.id = thislist.id + 1;
+    }
+    request.send(null)
 }
 
 ShoppingList.prototype.save = function () {
@@ -60,6 +55,7 @@ ShoppingList.prototype.save = function () {
 
 }
 ShoppingList.prototype.onEdit = function () {
+    console.log(this)
     let item = event.target.closest('li');
     let textSpan = item.firstElementChild
     this.textInput.value = textSpan.textContent;
@@ -72,37 +68,46 @@ ShoppingList.prototype.onDelete = function () {
     this.list.removeChild(item);
 }
 
-// function createElement(tag, text, className, events) {
-//     let element = document.createElement(tag);
-//     element.setAttribute('class', className);
-//     element.innerHTML = text;
-//     for (let eventName in events) {
-//         element[eventName] = events[eventName];
-//     }
-
-//     return element;
-// }
-
-let allLists = document.querySelectorAll('.shopping-list')
-// console.log(allLists)
-for (let i = 0; i < allLists.length; i++) {
-    new ShoppingList(allLists[i])   
+ShoppingList.prototype.done = function () {
+    let item = event.target.closest('li');
+    let textSpan = item.firstElementChild
+    item.remove();
+    // console.log(item)
+    let itemTemplate = '<li id="li-{{id}}"> {{span}} </li>';
+    let listItem = Mustache.render(itemTemplate, { span: textSpan.textContent, id: this.id })
+    // console.log(listItem)
+    let template = document.createElement('template');
+    template.innerHTML = listItem
+    this.listDone.appendChild(template.content);
+    // console.log(item)
 }
 
-// let listStructure = '<div class="container shopping-list"><span id="listTitle">{{title}}</span><ul id="list"> </ul> <hr /> <div id="form" class="new"> <input id="text" type="text" /> <a id="add" class="btn">Add</a> <a id="save" class="btn">Save</a> </div> </div>'
-// let inputGeneral = document.getElementById("name");
-// let listsContainer = document.getElementById("lists")
 
-// let btnAdd = document.querySelector('.btn-newlist');
-// btnAdd.onclick = function () {
-//     let listsName = Mustache.render(listStructure, { title: inputGeneral.value })
+let addList = document.querySelector('.btn-newlist');
+let inputName = document.querySelector('#name');
+let idList = 1;
 
-//     // Crear nodo
-//     let template = document.createElement('template');
-//     template.innerHTML = listsName;
 
-//     // Insertar
-//     listsContainer.appendChild(template.content);
-//     console.log(this);
-    
-// }
+addList.onclick = function (event) {
+    let item = event.target.closest('div').nextElementSibling;
+    console.log(item)
+    request.open('GET', './assets/templateList.html', true);
+    request.onload = function () {
+        let listItem = Mustache.render(this.response, { idList: idList, name: inputName.value })
+        // console.log(listItem)
+        // Crear nodo
+        let template = document.createElement('template');
+        template.innerHTML = listItem;
+        // Insertar
+        // item.appendChild(template.content);
+        item.appendChild(template.content)
+
+        new ShoppingList(document.querySelector('.shopping-list'), inputName.value)
+    }
+    request.send(null)
+    idList = idList + 1;
+}
+
+
+
+
