@@ -37,9 +37,10 @@ ShoppingList.prototype.add = function (event) {
         thislist.list.appendChild(template.content);
 
         // Binding de botones 
-        thislist.list.querySelector('.btn-edit').onclick = thislist.onEdit.bind(thislist)
-        thislist.list.querySelector('.btn-delete').onclick = thislist.onDelete.bind(thislist)
-        thislist.list.querySelector('.spanLi').onclick = thislist.span.bind(thislist)
+        let newLi = thislist.list.querySelector(`#li-${thislist.id}`)
+        newLi.querySelector('.btn-edit').onclick = thislist.onEdit
+        newLi.querySelector('.btn-delete').onclick = thislist.onDelete
+        newLi.querySelector('.spanLi').onclick = thislist.span
         thislist.textInput.value = '';
         thislist.id = thislist.id + 1;
     }
@@ -47,19 +48,18 @@ ShoppingList.prototype.add = function (event) {
 }
 
 ShoppingList.prototype.save = function () {
-    let el = document.getElementById(`${this.attributeNumber}`)
-    var text = this.textInput.value;
-    el.innerHTML = text;
+    let el = this.list.querySelector(`#${this.attributeNumber}`)
+    let textSpan = el.firstElementChild
+    textSpan.textContent = this.textInput.value;
     this.textInput.value = '';
     this.form.setAttribute('class', 'new')
 
 }
 ShoppingList.prototype.onEdit = function () {
-    console.log(this)
     let item = event.target.closest('li');
     let textSpan = item.firstElementChild
     this.textInput.value = textSpan.textContent;
-    this.attributeNumber = textSpan.getAttribute('id')
+    this.attributeNumber = item.getAttribute('id')
     this.form.setAttribute('class', 'edit')
 }
 
@@ -102,7 +102,7 @@ addList.onclick = function (event) {
         // item.appendChild(template.content);
         item.appendChild(template.content)
 
-        new ShoppingList(document.querySelector('.shopping-list'), inputName.value)
+        new ShoppingList(document.querySelector(`#list-${idList}`), inputName.value)
     }
     request.send(null)
     idList = idList + 1;
