@@ -1,5 +1,8 @@
 
 var request = new XMLHttpRequest();
+let addList = document.querySelector('.btn-newlist');
+let inputName = document.querySelector('#name');
+let idList = 1;
 
 function ShoppingList(root, name) {
     this.root = root,
@@ -19,15 +22,42 @@ function ShoppingList(root, name) {
     this.span = this.done.bind(this)
 }
 
+
+function reqListener(source, callback) {
+    request.open('GET', source, true);
+    request.onload = function () {
+        var response = this.response
+        callback(response)
+    }
+    request.send(null)
+}
+
+addList.onclick = function (event) {
+    let item = event.target.closest('div').nextElementSibling;
+    console.log(item)
+    reqListener('./assets/templateList.html', function callback(resp) {
+        let listItem = Mustache.render(resp, { idList: idList, name: inputName.value })
+       
+        // Crear nodo
+        let template = document.createElement('template');
+        template.innerHTML = listItem;
+        // Insertar
+        item.appendChild(template.content)
+
+        new ShoppingList(document.querySelector(`#list-${idList}`), inputName.value)
+        inputName.value = '';
+    });
+    idList = idList + 1;
+}
+
+
+
 ShoppingList.prototype.add = function (event) {
     let thislist = this
-    // console.log(event.currentTarget.response)
-    request.open('GET', './assets/template.html', true);
-    request.onload = function () {
-        console.log(this.response)
-
+    reqListener('./assets/template.html', function callback(resp) {
+        console.log(resp);
         // Interpolar vista y modelo
-        let listItem = Mustache.render(this.response, { id: thislist.id, text: thislist.textInput.value })
+        let listItem = Mustache.render(resp, { id: thislist.id, text: thislist.textInput.value })
 
         // Crear nodo
         let template = document.createElement('template');
@@ -43,8 +73,7 @@ ShoppingList.prototype.add = function (event) {
         newLi.querySelector('.spanLi').onclick = thislist.span
         thislist.textInput.value = '';
         thislist.id = thislist.id + 1;
-    }
-    request.send(null)
+    });
 }
 
 ShoppingList.prototype.save = function () {
@@ -68,45 +97,21 @@ ShoppingList.prototype.onDelete = function () {
     this.list.removeChild(item);
 }
 
-ShoppingList.prototype.done = function () {
+ShoppingList.prototype.done = function (event) {
+    let thislistDone = this.listDone
     let item = event.target.closest('li');
     let textSpan = item.firstElementChild
     item.remove();
-    // console.log(item)
-    let itemTemplate = '<li id="li-{{id}}"> {{span}} </li>';
-    let listItem = Mustache.render(itemTemplate, { span: textSpan.textContent, id: this.id })
-    // console.log(listItem)
-    let template = document.createElement('template');
-    template.innerHTML = listItem
-    this.listDone.appendChild(template.content);
-    // console.log(item)
-}
-
-
-let addList = document.querySelector('.btn-newlist');
-let inputName = document.querySelector('#name');
-let idList = 1;
-
-
-addList.onclick = function (event) {
-    let item = event.target.closest('div').nextElementSibling;
-    console.log(item)
-    request.open('GET', './assets/templateList.html', true);
-    request.onload = function () {
-        let listItem = Mustache.render(this.response, { idList: idList, name: inputName.value })
-        // console.log(listItem)
-        // Crear nodo
+    reqListener('./assets/templateDone.html', function callback(resp) {
+        let listItem = Mustache.render(resp, { span: textSpan.textContent, id: this.id })
         let template = document.createElement('template');
-        template.innerHTML = listItem;
-        // Insertar
-        // item.appendChild(template.content);
-        item.appendChild(template.content)
-
-        new ShoppingList(document.querySelector(`#list-${idList}`), inputName.value)
-    }
-    request.send(null)
-    idList = idList + 1;
+        template.innerHTML = listItem
+        thislistDone.appendChild(template.content);
+        console.log(thislistDone)
+    });
 }
+
+
 
 
 

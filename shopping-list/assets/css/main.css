@@ -1,12 +1,12 @@
 body {
-    display:flex;
+    display: flex;
     /* justify-content: center; */
     align-items: center;
     flex-direction: column;
 }
 
 .allLists {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -31,8 +31,8 @@ ul {
     padding: 10px 0 0 0;
 }
 
-
-li::before { /* add the new bullet point */
+li::before {
+    /* add the new bullet point */
     display: inline-block;
     content: '\2713';
     margin-right: 5px;
@@ -57,12 +57,31 @@ li::before { /* add the new bullet point */
 .btn.btn-delete {
     border: 1px solid #e91e63;
 }
+
 .container {
-    display:flex;
+    display: flex;
     flex-direction: column;
 }
 
-#list-done li{
-    text-decoration:line-through
+.shopping-list {
+    border-radius: 10%;
+    border: gray solid 1px;
+    margin: 20px;
+    padding: 20px;
+    background-color: aliceblue
 }
 
+#list-done li {
+    text-decoration: line-through
+}
+
+.addNewList p {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
+}
+
+.addNewList {
+    border: gray solid 2px;
+    padding: 15px;
+}
