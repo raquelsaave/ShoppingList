@@ -3,12 +3,25 @@ body {
     /* justify-content: center; */
     align-items: center;
     flex-direction: column;
+    font-family: 'Noto Sans SC', sans-serif;
+    /* background-image: url("./5418.JPG"); The image used */
+    background-color: #cccccc;
+    /* Used if the image is unavailable */
+    height: 500px;
+    /* You must set a specified height */
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    /* Do not repeat the image */
+    background-size: cover;
+    /* Resize the background image to cover the entire container */
 }
 
 .allLists {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .new #save {
@@ -36,7 +49,7 @@ li::before {
     display: inline-block;
     content: '\2713';
     margin-right: 5px;
-    color: #66c;
+    color: rgb(70, 141, 163);
 }
 
 .content {
@@ -48,8 +61,8 @@ li::before {
 }
 
 .btn {
-    margin-left: 5px;
-    padding: 5px 10px;
+    margin-left: 10px;
+    padding: 2px 10px;
     border: 1px solid #4caf50;
     border-radius: 2px;
 }
@@ -61,6 +74,7 @@ li::before {
 .container {
     display: flex;
     flex-direction: column;
+    box-shadow: 5px 10px #999494af;
 }
 
 .shopping-list {
@@ -68,20 +82,39 @@ li::before {
     border: gray solid 1px;
     margin: 20px;
     padding: 20px;
-    background-color: aliceblue
+    background-color: white;
+    padding-top: 0px;
 }
 
 #list-done li {
-    text-decoration: line-through
-}
-
-.addNewList p {
-    text-align: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 25px;
+    text-decoration: line-through;
+    color: black;
 }
 
 .addNewList {
-    border: gray solid 2px;
+    text-align: center;
+    border: gray dotted 2px;
     padding: 15px;
+    background-color: white;
+    width: 50%;
+}
+
+.name-list {
+    font-size: 20px;
+    color: rgb(68, 68, 63);
+    font-family: 'Noto Sans SC', sans-serif;
+    text-align: center;
+    border: gray solid 0.5px;
+}
+
+.pin-img {
+    width: 15px;
+    height: 15px;
+    margin: 10px;
+}
+
+.add-new-list {
+    margin-top: 0;
+    font-size: 20px;
+    text-align: center;
 }

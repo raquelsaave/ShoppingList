@@ -6,20 +6,20 @@ let idList = 1;
 
 function ShoppingList(root, name) {
     this.root = root,
-    this.name = name,
-    this.id = 1,
-    this.textInput = root.querySelector('#text'),
-    this.addButton = root.querySelector('#add'),
-    this.list = root.querySelector('#list'),
-    this.listDone = root.querySelector('#list-done');
+        this.name = name,
+        this.id = 1,
+        this.textInput = root.querySelector('#text'),
+        this.addButton = root.querySelector('#add'),
+        this.list = root.querySelector('#list'),
+        this.listDone = root.querySelector('#list-done');
     this.saveButton = root.querySelector('#save'),
-    this.attributeNumber = 0,
-    this.form = root.querySelector('#form'),
-    this.addButton.onclick = this.add.bind(this),
-    this.onEdit = this.onEdit.bind(this),
-    this.onDelete = this.onDelete.bind(this),
-    this.saveButton.onclick = this.save.bind(this),
-    this.span = this.done.bind(this)
+        this.attributeNumber = 0,
+        this.form = root.querySelector('#form'),
+        this.addButton.onclick = this.add.bind(this),
+        this.onEdit = this.onEdit.bind(this),
+        this.onDelete = this.onDelete.bind(this),
+        this.saveButton.onclick = this.save.bind(this),
+        this.span = this.done.bind(this)
 }
 
 
@@ -37,7 +37,7 @@ addList.onclick = function (event) {
     console.log(item)
     reqListener('./assets/templateList.html', function callback(resp) {
         let listItem = Mustache.render(resp, { idList: idList, name: inputName.value })
-       
+
         // Crear nodo
         let template = document.createElement('template');
         template.innerHTML = listItem;
@@ -110,9 +110,6 @@ ShoppingList.prototype.done = function (event) {
         console.log(thislistDone)
     });
 }
-
-
-
 
 
 
