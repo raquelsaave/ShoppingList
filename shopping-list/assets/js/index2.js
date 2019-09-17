@@ -12,7 +12,7 @@ function ShoppingList(root, name) {
         this.addButton = root.querySelector('#add'),
         this.list = root.querySelector('#list'),
         this.listDone = root.querySelector('#list-done');
-    this.saveButton = root.querySelector('#save'),
+        this.saveButton = root.querySelector('#save'),
         this.attributeNumber = 0,
         this.form = root.querySelector('#form'),
         this.addButton.onclick = this.add.bind(this),
@@ -20,7 +20,11 @@ function ShoppingList(root, name) {
         this.onDelete = this.onDelete.bind(this),
         this.saveButton.onclick = this.save.bind(this),
         this.span = this.done.bind(this)
+        this.spanDone =  this.unDone.bind(this),
+        this.deleteList = root.querySelector('.btn-delete-list')
+        this.deleteList.onclick = this.deleteListComplete.bind(this)
 }
+
 
 
 function reqListener(source, callback) {
@@ -50,7 +54,11 @@ addList.onclick = function (event) {
     idList = idList + 1;
 }
 
-
+ShoppingList.prototype.deleteListComplete = function () {
+    let thislist = this;
+    console.log(thislist)
+    thislist = null;
+}
 
 ShoppingList.prototype.add = function (event) {
     let thislist = this
@@ -106,10 +114,17 @@ ShoppingList.prototype.done = function (event) {
         let listItem = Mustache.render(resp, { span: textSpan.textContent, id: this.id })
         let template = document.createElement('template');
         template.innerHTML = listItem
-        thislistDone.appendChild(template.content);
-        console.log(thislistDone)
+        thislistDone.appendChild(template.content)
     });
 }
 
+ShoppingList.prototype.unDone = function (event) {
+    let thislistDone = this.listDone
+    let item = event.target.closest('li'); 
+    console.log(item)
+    thislistDone.querySelector('.done') = thislistDone.spanDone
+}
 
 
+  
+  

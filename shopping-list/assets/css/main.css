@@ -1,6 +1,8 @@
+/* @import "../../node_modules/@material/card/mdc-card"; */
+
 body {
     display: flex;
-    /* justify-content: center; */
+    
     align-items: center;
     flex-direction: column;
     font-family: 'Noto Sans SC', sans-serif;
@@ -41,15 +43,31 @@ ul {
 #list li {
     display: flex;
     align-items: baseline;
-    padding: 10px 0 0 0;
+    padding: 10px 10px 0 20px;
+    list-style: none;
 }
 
-li::before {
+#list li::before {
     /* add the new bullet point */
     display: inline-block;
-    content: '\2713';
+    /* content: '\2713'; */
+    content: '\2610';
     margin-right: 5px;
     color: rgb(70, 141, 163);
+}
+
+#list-done li::before {
+    /* add the new bullet point */
+    display: inline-block;
+    /* content: '\2713'; */
+    content: '\2611';
+    margin-right: 5px;
+    color: rgb(70, 141, 163);
+}
+
+button#add {
+    float: right;
+    margin-right: 20px;
 }
 
 .content {
@@ -63,58 +81,112 @@ li::before {
 .btn {
     margin-left: 10px;
     padding: 2px 10px;
-    border: 1px solid #4caf50;
+    /* border: 1px solid #4caf50; */
     border-radius: 2px;
 }
 
 .btn.btn-delete {
-    border: 1px solid #e91e63;
+    /* border: 1px solid #e91e63; */
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    box-shadow: 5px 10px #999494af;
+    /* box-shadow: 5px 10px #999494af; */
 }
 
 .shopping-list {
-    border-radius: 10%;
-    border: gray solid 1px;
+    border-radius: 2%;
+    /* border: gray solid 1px; */
     margin: 20px;
-    padding: 20px;
-    background-color: white;
+    /* padding: 20px; */
+    /* background-color: white; */
     padding-top: 0px;
 }
 
 #list-done li {
     text-decoration: line-through;
     color: black;
+    margin: 20px;
 }
 
 .addNewList {
     text-align: center;
-    border: gray dotted 2px;
+    /* border: gray dotted 2px; */
     padding: 15px;
     background-color: white;
-    width: 50%;
 }
 
 .name-list {
-    font-size: 20px;
+    /* font-size: 20px;
     color: rgb(68, 68, 63);
     font-family: 'Noto Sans SC', sans-serif;
-    text-align: center;
-    border: gray solid 0.5px;
+    text-align: center; */
+    /* border: gray solid 0.5px; */
 }
-
+/* 
 .pin-img {
     width: 15px;
     height: 15px;
     margin: 10px;
-}
+} */
 
 .add-new-list {
     margin-top: 0;
     font-size: 20px;
     text-align: center;
 }
+
+.demo-card-square > .mdl-card__title {
+    color: #fff;
+    height: 76px;
+    /* background: url('../assets/demos/welcome_card.jpg') center / cover;
+     */
+     background-color: #80cbc4
+  }
+
+  .material-icons {
+      font-size: 30px;
+  }
+  .mdl-layout--fixed-header {
+      background-color: lightgray
+  }
+ 
+  #text {
+      margin: 20px
+  }
+  .mdl-layout__header {
+    background-color: #4f9a94;
+
+  }
+  .mdl-button--fab.mdl-button--colored {
+    background-color: #4f9a94
+  }
+  .mdl-button--raised.mdl-button--colored {
+    background-color: lightgray;   
+  }
+
+  .mdl-layout-title {
+    /* font-family: 'Luckiest Guy', cursive; */
+    font-size: 40px;
+    text-align: center
+  }
+
+  .mdl-layout__header-row {
+      text-align: center;
+  }
+
+  .mdl-textfield__input {
+      padding: 10px
+  }
+.mdl-button {
+    min-width: auto;
+}
+
+.material-icons {
+    font-size: 20px;
+}
+
+label:hover, input:focus + label {
+    background-color: rgba(255, 255, 255, .2);
+  }

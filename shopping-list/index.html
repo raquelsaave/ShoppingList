@@ -1,20 +1,54 @@
 <html>
-    <head>
-        <title>List</title>
-        <link rel="stylesheet" href="./assets/css/main.css">
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <div class="addNewList">
-            <p class="add-new-list">Add a new list to your board!</p>
-            <input id="name" type="text" />
-            <a id="add" class="btn-newlist btn">Add</a>
-        </div>
-        
-        <div class="allLists">
-        </div>
-    </body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.3/mustache.js"></script>
-    
-    <script src="./assets/js/index2.js"></script>
+
+<head>
+    <title>List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/mainSass.css">
+</head>
+
+<body>
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+                <header class="mdl-layout__header">
+                  <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <div class="mdl-layout-spacer"></div> 
+                    <span class="mdl-layout-title">...</span>
+                    <!-- <div id="tt1" class="icon material-icons">done</div> -->
+                    <!-- Add spacer, to align navigation to the right -->
+                    <!-- <div class="mdl-layout-spacer"></div> -->
+                   
+                  </div>
+                </header>
+    <div class="addNewList">
+        <p class="add-new-list">Add a new list to your board!</p>
+        <form action="#">
+                <div class="mdl-textfield mdl-js-textfield">
+                  <input id="name" class="mdl-textfield__input" type="text">
+                  <label class="mdl-textfield__label" for="sample1">Text...</label>
+                </div>
+                <!-- <button id="add" class="btn-newlist btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        Add
+                </button> -->
+
+                <button class="btn-newlist mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                        <i class="material-icons">add</i>
+                      </button>
+              </form>
+        <!-- <input id="name" type="text" /> -->
+        <!-- <a id="add" class="btn-newlist btn">Add</a> -->
+   
+    </div>
+    <div class="allLists">
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.3/mustache.js"></script>
+
+<script src="./assets/js/index2.js"></script>
+
 </html>
