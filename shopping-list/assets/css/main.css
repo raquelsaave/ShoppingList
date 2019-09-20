@@ -85,9 +85,9 @@ button#add {
     border-radius: 2px;
 }
 
-.btn.btn-delete {
-    /* border: 1px solid #e91e63; */
-}
+/* .btn.btn-delete {
+     border: 1px solid #e91e63; 
+} */
 
 .container {
     display: flex;
@@ -117,13 +117,13 @@ button#add {
     background-color: white;
 }
 
-.name-list {
-    /* font-size: 20px;
+/* .name-list {
+    font-size: 20px;
     color: rgb(68, 68, 63);
     font-family: 'Noto Sans SC', sans-serif;
-    text-align: center; */
-    /* border: gray solid 0.5px; */
-}
+    text-align: center;
+    border: gray solid 0.5px;
+} */
 /* 
 .pin-img {
     width: 15px;

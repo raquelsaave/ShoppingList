@@ -1,6 +1,7 @@
 let addList = document.querySelector('.btn-newlist');
 let inputName = document.querySelector('#name');
 let idList = 1;
+let itemDone = 0;
 
 function ShoppingList(root, name) {
     this.root = root,
@@ -17,12 +18,9 @@ function ShoppingList(root, name) {
     this.onEdit = this.onEdit.bind(this),
     this.onDelete = this.onDelete.bind(this),
     this.saveButton.onclick = this.save.bind(this),
-    this.span = this.done.bind(this)
-    // this.spanDone =  this.unDone.bind(this),
-    // this.deleteList = root.querySelector('.btn-delete-list')
-    // this.deleteList.onclick = this.deleteListComplete.bind(this)
-}
+    this.span= this.done.bind(this)
 
+}
 
 function reqListener(source, callback) {
     let request = new XMLHttpRequest();
@@ -95,18 +93,33 @@ ShoppingList.prototype.onDelete = function () {
     this.list.removeChild(item);
 }
 
-ShoppingList.prototype.done = function (event) {
-    let thislistDone = this.listDone
-    let item = event.target.closest('li');
-    let textSpan = item.firstElementChild
-    item.remove();
-    reqListener('./assets/templateDone.html', function callback(resp) {
-        let listItem = Mustache.render(resp, { span: textSpan.textContent, id: this.id })
-        let template = document.createElement('template');
-        template.innerHTML = listItem
-        thislistDone.appendChild(template.content)
-    });
+ShoppingList.prototype.renderDone = function (resp) {
+    let textSpan = itemDone.firstElementChild
+    itemDone.remove();
+    let listItem = Mustache.render(resp, { span: textSpan.textContent, id: this.id })
+    let template = document.createElement('template');
+    template.innerHTML = listItem
+    this.listDone.appendChild(template.content)
 }
+
+ShoppingList.prototype.done = function (event) {
+    itemDone = event.target.closest('li');
+    reqListener('./assets/templateDone.html',this.renderDone.bind(this));
+}
+
+
+// ShoppingList.prototype.done = function (event) {
+//     let thislistDone = this.listDone
+//     let item = event.target.closest('li');
+//     let textSpan = item.firstElementChild
+//     item.remove();
+//     reqListener('./assets/templateDone.html', function callback(resp) {
+//         let listItem = Mustache.render(resp, { span: textSpan.textContent, id: this.id })
+//         let template = document.createElement('template');
+//         template.innerHTML = listItem
+//         thislistDone.appendChild(template.content)
+//     });
+// }
 
 
 // ShoppingList.prototype.add = function (event) {
