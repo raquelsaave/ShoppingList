@@ -1,0 +1,23 @@
+{
+    "extends": "stylelint-config-recommended",
+    "rules": {
+        indentation: ["tab", {
+            baseIndentLevel: "auto",
+            ignore: ["inside-parens", "param", "value"]
+        }],
+        "keyframe-declaration-no-important" : null,
+        "rule-empty-line-before" : null,
+        "no-descending-specificity" : null,
+        "number-leading-zero" : "always",
+        "string-quotes" : "double",
+        "font-family-no-missing-generic-family-keyword" : null,
+        "selector-type-no-unknown" : [true, { ignore: ["custom-elements"] }],
+        "selector-no-qualifying-type" : [true, {
+            ignore: ["attribute", "class", "id"]
+        }],
+        "max-nesting-depth" : 5,
+        "selector-max-compound-selectors" : 6,
+        "property-no-unknown" : [true, { ignoreProperties: ["font-smooth"] }],
+        "block-opening-brace-space-before": "always"
+    }
+}

@@ -1,11 +1,11 @@
-$mainColor : #4f9a94;
-$secondaryColor :  lightgray; 
+$mainColor: #4f9a94;
+$secondaryColor: lightgray;
 
 body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: "Noto Sans SC", sans-serif;
     background-color: #cccccc;
 }
 
@@ -19,7 +19,7 @@ body {
         &::before {
             /* add the new bullet point */
             display: inline-block;
-            content: '\2610';
+            content: "\2610";
             margin-right: 5px;
             color: rgb(70, 141, 163);
         }
@@ -37,7 +37,7 @@ body {
         &::before {
             /* add the new bullet point */
             display: inline-block;
-            content: '\2611';
+            content: "\2611";
             margin-right: 5px;
             color: rgb(70, 141, 163);
         }
@@ -52,7 +52,7 @@ body {
 }
 
 #text {
-    margin: 20px
+    margin: 20px;
 }
 .new #save {
     display: none;
@@ -72,10 +72,10 @@ button#add {
     float: right;
     margin-right: 20px;
 }
- button#save {
+button#save {
     float: right;
     margin-right: 20px;
- }
+}
 
 .content {
     min-width: 80px;
@@ -100,16 +100,12 @@ button#add {
     border-radius: 2%;
 }
 
-
-
-
 .addNewList {
     text-align: center;
     /* border: gray dotted 2px; */
     padding: 15px;
     background-color: white;
 }
-
 
 .add-new-list {
     margin-top: 0;
@@ -122,40 +118,39 @@ button#add {
 .demo-card-square > .mdl-card__title {
     color: #fff;
     height: 76px;
-     background-color: #80cbc4
-  }
+    background-color: #80cbc4;
+}
 
-  .material-icons {
-      font-size: 30px;
-  }
-  .mdl-layout--fixed-header {
-      background-color:$secondaryColor
-  }
- 
-  .mdl-layout__header {
-    background-color: $mainColor 
+.material-icons {
+    font-size: 30px;
+}
+.mdl-layout--fixed-header {
+    background-color: $secondaryColor;
+}
 
-  }
-  .mdl-button--fab.mdl-button--colored {
-    background-color: $mainColor 
-  }
-  .mdl-button--raised.mdl-button--colored {
-    background-color: $secondaryColor  
-  }
+.mdl-layout__header {
+    background-color: $mainColor;
+}
+.mdl-button--fab.mdl-button--colored {
+    background-color: $mainColor;
+}
+.mdl-button--raised.mdl-button--colored {
+    background-color: $secondaryColor;
+}
 
-  .mdl-layout-title {
+.mdl-layout-title {
     /* font-family: 'Luckiest Guy', cursive; */
     font-size: 40px;
-    text-align: center
-  }
+    text-align: center;
+}
 
-  .mdl-layout__header-row {
-      text-align: center;
-  }
+.mdl-layout__header-row {
+    text-align: center;
+}
 
-  .mdl-textfield__input {
-      padding: 10px
-  }
+.mdl-textfield__input {
+    padding: 10px;
+}
 .mdl-button {
     min-width: auto;
 }
