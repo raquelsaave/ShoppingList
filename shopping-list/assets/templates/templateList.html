@@ -1,31 +1,27 @@
-
-
-<div class="demo-card-square mdl-card mdl-shadow--2dp container shopping-list" id="list-{{idList}}">
+<div class="demo-card-square mdl-card mdl-shadow--2dp shopping-list" id="list-{{idList}}">
 
     <div class="mdl-card__title">
         <h2 class="mdl-card__title-text name-list">{{name}}</h2>
         <div class="mdl-layout-spacer"></div>
 
     </div>
-
-    <!-- <p class="name-list">{{name}}</p> -->
     <ul id="list">
     </ul>
-            <form id="form" class="new" action="#">
-                    <div class="mdl-textfield mdl-js-textfield">
-                      <input id="text" class="mdl-textfield__input" type="text">
-                      <label class="mdl-textfield__label" for="sample1"></label>
-                    </div>
-                    <button id="add"
-                    class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                    Add
-                </button>
-                <button id="save"
-                    class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                    Save
-                </button>
-                  </form>
+    <form id="form" class="new item-form" action="#">
+        <div class = "input-buttons">
+        <div class="mdl-textfield mdl-js-textfield">
+            <input id="text" class="mdl-textfield__input" type="text">
+            <label class="mdl-textfield__label" for="sample1"></label>
+        </div>
+        <button id="add"
+            class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            Add
+        </button>
+        <button id="save"
+            class="btn mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            Save
+        </button>
+    </div>
+    </form>
     <ul id="list-done" class="demo-list-icon mdl-list"></ul>
-</div>
-</div>
 </div>

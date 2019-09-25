@@ -1,12 +1,127 @@
 $mainColor: #4f9a94;
 $secondaryColor: lightgray;
 
+/* Reset */
 body {
     display: flex;
     align-items: center;
     flex-direction: column;
     font-family: "Noto Sans SC", sans-serif;
     background-color: #cccccc;
+}
+
+ul {
+    list-style: none;
+    margin: 10px 0;
+    padding: 0;
+}
+
+/* Header */
+
+.mdl-layout--fixed-header {
+    background-color: $secondaryColor;
+}
+
+.mdl-layout__header {
+    background-color: $mainColor;
+}
+.mdl-layout__header-row {
+    text-align: center;
+}
+.mdl-layout-title {
+    /* font-family: 'Luckiest Guy', cursive; */
+    font-size: 40px;
+    text-align: center;
+}
+
+/* New List form */
+
+.addNewList {
+    text-align: center;
+    padding: 15px;
+    background-color: white;
+}
+
+.add-new-list {
+    margin-top: 0;
+    font-size: 20px;
+    text-align: center;
+}
+
+.mdl-button--fab.mdl-button--colored {
+    background-color: $mainColor;
+}
+.mdl-button--raised.mdl-button--colored {
+    background-color: $secondaryColor;
+}
+
+.mdl-textfield__input {
+    padding: 10px;
+}
+.mdl-button {
+    min-width: auto;
+}
+
+.material-icons {
+    font-size: 20px;
+}
+
+/* Card container */
+
+// .allLists {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-wrap: wrap;
+// }
+
+.allLists {
+    display: flex;
+    flex-flow: column wrap;
+    align-content: space-between;
+    /* Your container needs a fixed height, and it 
+   * needs to be taller than your tallest column. */
+    // height: 88000000px;
+    border-radius: 3px;
+    padding: 20px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.shopping-list {
+    width: 30%;
+    margin-bottom: 2%; /* (100-32*3)/2 */
+    position: relative;
+    // padding: 15px;
+    box-sizing: border-box;
+}
+.shopping-list:nth-of-type(4n + 1) {
+    order: 1;
+}
+.shopping-list:nth-of-type(4n + 2) {
+    order: 2;
+}
+.shopping-list:nth-of-type(4n + 3) {
+    order: 3;
+}
+.shopping-list:nth-of-type(4n) {
+    order: 4;
+}
+
+.break {
+    flex-basis: 100%;
+    width: 0;
+    margin: 0;
+    content: "";
+    padding: 0;
+}
+
+/* Card */
+
+.demo-card-square > .mdl-card__title {
+    color: #fff;
+    height: 76px;
+    background-color: #80cbc4;
 }
 
 #list {
@@ -44,158 +159,29 @@ body {
     }
 }
 
-// .allLists {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     flex-wrap: wrap;
-// }
-
-.allLists {
-  display: flex;
-  flex-flow: column wrap;
-  align-content: space-between;
-  /* Your container needs a fixed height, and it 
-   * needs to be taller than your tallest column. */
-  // height: 88000000px;
-  border-radius: 3px;
-  padding: 20px;
-  width: 60%;
-  margin: 40px auto;
-}
-
-.shopping-list {
-  // width: 30%;
-  margin-bottom: 2%; /* (100-32*3)/2 */
-  position: relative;
-  // padding: 15px;
-  box-sizing: border-box;
-}
-.shopping-list:nth-of-type(4n+1) { order: 1; }
-.shopping-list:nth-of-type(4n+2) { order: 2; }
-.shopping-list:nth-of-type(4n+3) { order: 3; }
-.shopping-list:nth-of-type(4n)   { order: 4; }
-
-// .allLists::before,
-// .allLists::after {
-//   content: "";
-//   flex-basis: 100%;
-//   width: 0;
-//   order: 2;
-// }
-.break {
-  flex-basis: 100%;
-  width: 0;
-  // border: 1px solid #ddd;
-  margin: 0;
-  content: "";
-  padding: 0;
-}
-
-#text {
-    margin: 20px;
-}
-.new #save {
-    display: none;
-}
-
-.edit #add {
-    display: none;
-}
-
-ul {
-    list-style: none;
-    margin: 10px 0;
-    padding: 0;
-}
-
-button#add {
-    float: right;
-    margin-right: 20px;
-}
-button#save {
-    float: right;
-    margin-right: 20px;
-}
-
-.content {
-    min-width: 80px;
-}
-
-#form {
+.item-form {
     padding-top: 10px;
-}
+    .btn {
+        margin-left: 10px;
+        padding: 2px 10px;
+        border-radius: 2px;
+    }
+    .input-buttons {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-around;
+    }
+    button#add, button#save {
+        margin-right: 5px;
+    }
+    #text {
+        margin: 20px;
+    }
+    &.new #save {
+        display: none;
+    }
 
-.btn {
-    margin-left: 10px;
-    padding: 2px 10px;
-    /* border: 1px solid #4caf50; */
-    border-radius: 2px;
-}
-
-.container {
-    // display: flex;
-    // flex-direction: column;
-    padding-top: 0px;
-    margin: 20px;
-    border-radius: 2%;
-}
-
-.addNewList {
-    text-align: center;
-    /* border: gray dotted 2px; */
-    padding: 15px;
-    background-color: white;
-}
-
-.add-new-list {
-    margin-top: 0;
-    font-size: 20px;
-    text-align: center;
-}
-
-/* Modifications material-icon*/
-
-.demo-card-square > .mdl-card__title {
-    color: #fff;
-    height: 76px;
-    background-color: #80cbc4;
-}
-
-.material-icons {
-    font-size: 30px;
-}
-.mdl-layout--fixed-header {
-    background-color: $secondaryColor;
-}
-
-.mdl-layout__header {
-    background-color: $mainColor;
-}
-.mdl-button--fab.mdl-button--colored {
-    background-color: $mainColor;
-}
-.mdl-button--raised.mdl-button--colored {
-    background-color: $secondaryColor;
-}
-
-.mdl-layout-title {
-    /* font-family: 'Luckiest Guy', cursive; */
-    font-size: 40px;
-    text-align: center;
-}
-
-.mdl-layout__header-row {
-    text-align: center;
-}
-
-.mdl-textfield__input {
-    padding: 10px;
-}
-.mdl-button {
-    min-width: auto;
-}
-
-.material-icons {
-    font-size: 20px;
+    &.edit #add {
+        display: none;
+    }
 }

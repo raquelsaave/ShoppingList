@@ -7,25 +7,25 @@ module.exports = function (grunt) {
     watch: {
     },
     stylelint: {
-      all: ["assets/css/*.scss"]
+      all: ["assets/css/main.css"]
     },
     sass: {
       options: {
-          implementation: sass,
-          sourceMap: true
+        implementation: sass,
+        sourceMap: true
       },
       dist: {
-          src : ['main.scss'],
-          dest : 'assets/css',
-          ext : '.css',
-          cwd : 'assets/scss',
-          expand : true
+        src: ['main.scss'],
+        dest: 'assets/css',
+        ext: '.css',
+        cwd: 'assets/scss',
+        expand: true
       },
     },
-      eslint: {
-        target: ["assets/js/*.js"]
-     }
-  
+    eslint: {
+      target: ["assets/js/*.js"]
+    }
+
   });
 
   grunt.loadNpmTasks("grunt-stylelint");
@@ -33,5 +33,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-eslint');
 
   // Default task.
-  grunt.registerTask('default', ['stylelint','sass']);
+  grunt.registerTask('default', ['stylelint', 'sass']);
 };

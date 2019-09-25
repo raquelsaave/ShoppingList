@@ -75,7 +75,7 @@ ShoppingList.prototype.save = function () {
 	let textSpan = el.firstElementChild
 	textSpan.textContent = this.textInput.value;
 	this.textInput.value = "";
-	this.form.setAttribute("class", "new")
+	this.form.setAttribute("class", "item-form new")
 
 }
 
@@ -84,7 +84,7 @@ ShoppingList.prototype.onEdit = function () {
 	let textSpan = item.firstElementChild
 	this.textInput.value = textSpan.textContent;
 	this.attributeNumber = item.getAttribute("id")
-	this.form.setAttribute("class", "edit")
+	this.form.setAttribute("class", "item-form edit")
 }
 
 ShoppingList.prototype.onDelete = function () {
