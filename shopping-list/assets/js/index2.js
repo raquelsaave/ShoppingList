@@ -40,7 +40,11 @@ addList.onclick = function (event) {
 		let template = document.createElement("template");
 		template.innerHTML = listItem;
 		// Insertar
-		item.appendChild(template.content)
+		// item.appendChild(template.content)
+		item.insertBefore(template.content, item.querySelector(".break"))
+		
+		// Para cada columna sumamos el total de las alturas de sus cartas
+		
 
 		new ShoppingList(document.querySelector(`#list-${idList}`), inputName.value)
 		inputName.value = "";
@@ -56,6 +60,7 @@ ShoppingList.prototype.render = function (resp) {
 
 	// Insertar
 	this.list.appendChild(template.content);
+	
 
 	// Binding de botones 
 	let newLi = this.list.querySelector(`#li-${this.id}`)
