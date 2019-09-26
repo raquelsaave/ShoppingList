@@ -2,6 +2,7 @@ let addList = document.querySelector(".btn-newlist");
 let inputName = document.querySelector("#name");
 let idList = 1;
 let itemDone = 0;
+let itemAdded = document.querySelector(".allLists");
 
 function ShoppingList(root, name) {
 	this.root = root,
@@ -33,6 +34,7 @@ function reqListener(source, callback) {
 
 addList.onclick = function (event) {
 	let item = event.target.closest("div").nextElementSibling;
+	console.log("ITEM  " + item)
 	reqListener("./assets/templates/templateList.html", function callback(resp) {
 		let listItem = Mustache.render(resp, {idList: idList, name: inputName.value})
 
@@ -42,9 +44,7 @@ addList.onclick = function (event) {
 		// Insertar
 		// item.appendChild(template.content)
 		item.insertBefore(template.content, item.querySelector(".break"))
-		
-		// Para cada columna sumamos el total de las alturas de sus cartas
-		
+		measureHeight(item);
 
 		new ShoppingList(document.querySelector(`#list-${idList}`), inputName.value)
 		inputName.value = "";
@@ -52,15 +52,44 @@ addList.onclick = function (event) {
 	idList = idList + 1;
 }
 
+function measureHeight(cont) {
+	// Para cada columna sumamos el total de las alturas de sus cartas
+	let totalHeight = [0, 0, 0, 0];
+	cont.querySelectorAll(".shopping-list:nth-of-type(4n):not(.break)").forEach(el => {
+		totalHeight[0] += el.offsetHeight + 20;
+	});
+	cont.querySelectorAll(".shopping-list:nth-of-type(4n + 1):not(.break)").forEach(el => {
+		totalHeight[1] += el.offsetHeight + 20;
+	});
+	cont.querySelectorAll(".shopping-list:nth-of-type(4n + 2):not(.break)").forEach(el => {
+		totalHeight[2] += el.offsetHeight + 20;
+	});
+	cont.querySelectorAll(".shopping-list:nth-of-type(4n + 3):not(.break)").forEach(el => {
+		totalHeight[3] += el.offsetHeight + 20;
+	});
+
+	console.log("total height", totalHeight);
+	let max = 0;
+	totalHeight.forEach(i => {
+		if (i > max) max = i;
+	});
+	console.log("max", max);
+	cont.style.minHeight = (max + 40) + "px";
+}
+
 ShoppingList.prototype.render = function (resp) {
 	let listItem = Mustache.render(resp, {id: this.id, text: this.textInput.value})
 	// Crear nodo
 	let template = document.createElement("template");
 	template.innerHTML = listItem;
-
+	console.log(template.content)
+	console.log("listItem" + listItem)
 	// Insertar
 	this.list.appendChild(template.content);
+
 	
+	//Volver a llamar 
+	measureHeight(itemAdded)
 
 	// Binding de botones 
 	let newLi = this.list.querySelector(`#li-${this.id}`)

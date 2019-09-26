@@ -90,11 +90,11 @@ ul {
 
 .shopping-list {
     width: 23%;
-    margin-bottom: 2%; /* (100-32*3)/2 */
+    margin-bottom: 20px; /* (100-32*3)/2 */
     position: relative;
     // padding: 15px;
     box-sizing: border-box;
-}
+} 
 .shopping-list:nth-of-type(4n + 1) {
     order: 1;
 }
@@ -114,6 +114,7 @@ ul {
     margin: 0;
     content: "";
     padding: 0;
+    border: solid 1px red;
 }
 
 /* Card */
